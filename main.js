@@ -2,6 +2,7 @@ const createContactWrapper = document.getElementById("create-contact-wrapper")
 const nameInput = document.getElementById("name-input")
 const telephoneInput = document.getElementById("telephone-input")
 const createContactBtn = document.getElementById("create-contact-btn")
+const deleteContactsBtn = document.getElementById("delete-contacts-btn")
 const contactsContainer = document.getElementById("contacts-container")
 
 const validInput = (name, telephone, element) => {
@@ -9,7 +10,15 @@ const validInput = (name, telephone, element) => {
         element.querySelectorAll(".err-msg").forEach((e) => e.remove())
         const errMsg = document.createElement("p")
         errMsg.className = "err-msg"
-        errMsg.textContent = "yayay"
+
+        if (name.length === 0 && telephone.length === 0) {
+            errMsg.textContent = "Båda fält är tomma"
+        } else if (name.length === 0) {
+            errMsg.textContent = "Namn saknas"
+        } else {
+            errMsg.textContent = "Telefonnummer saknas"
+        }
+
         element.appendChild(errMsg)
         return false
     } else {
@@ -51,8 +60,8 @@ const createContact = (name, telephone, contactId) => {
         contact.id = contactId
 
         contact.innerHTML = `
-            <input class="contact-name" disabled value=${name}></input>
-            <input class="contact-telephone" disabled value=${telephone}></input>
+            <input placeholder="Namn" class="contact-name" disabled value=${name}></input>
+            <input placeholder="Telefon" class="contact-telephone" disabled value=${telephone}></input>
             <button class="edit-btn" onclick="editContact('${contactId}')">Ändra</button>
             <button onclick="deleteContact('${contactId}')">Radera</button>
         `
@@ -61,6 +70,14 @@ const createContact = (name, telephone, contactId) => {
     }
 }
 
+const deleteAllContacts = () => {
+    contactsContainer.querySelectorAll("div").forEach((element) => element.remove())
+}
+
 createContactBtn.addEventListener("click", () => {
     createContact(nameInput.value, telephoneInput.value, Math.random().toString(16).slice(2))
+})
+
+deleteContactsBtn.addEventListener("click", () => {
+    deleteAllContacts()
 })
