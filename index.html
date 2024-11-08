@@ -4,17 +4,21 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link rel="stylesheet" href="./style.css" />
     </head>
     <body>
-        <div id="create-contact-wrapper">
-            <input id="name-input" placeholder="Namn" />
-            <input id="telephone-input" placeholder="Telefon" />
-            <button id="create-contact-btn">Skapa</button>
-        </div>
-        <div>
-            <p>Kontaktlista</p>
-            <div id="contacts-container"></div>
-        </div>
+        <main>
+            <div id="create-contact-wrapper">
+                <input id="name-input" placeholder="Namn" />
+                <input id="telephone-input" placeholder="Telefon" />
+                <button id="create-contact-btn">Skapa</button>
+                <button id="delete-contacts-btn">Radera lista</button>
+            </div>
+            <div>
+                <p id="contact-list-title">Kontaktlista</p>
+                <div id="contacts-container"></div>
+            </div>
+        </main>
 
         <script src="./main.js"></script>
     </body>
